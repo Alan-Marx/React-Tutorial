@@ -5,20 +5,13 @@ import "./index.css";
 // The following class components could also be created as functions instead.
 
 class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.props.value
-    };
-  }
-
   render() {
     return (
       <button 
         className="square" 
-        onClick={this.props.onClick}
+        onClick={this.props.onClick()}
       >
-        {this.state.value}
+        {this.props.value}
       </button>
     );
   }
