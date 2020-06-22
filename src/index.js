@@ -2,19 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-// The following class components could also be created as functions instead.
+// Function components present a simpler syntax over class components
+// that only have a render() method
 
-class Square extends React.Component {
-  render() {
-    return (
-      <button 
-        className="square" 
-        onClick={() => this.props.onClick()}
-      >
-        {this.props.value}
-      </button>
-    );
-  }
+const Square = (props) => {
+  return (
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
 }
 
 class Board extends React.Component {
@@ -28,7 +24,7 @@ class Board extends React.Component {
   handleClick(i) {
     const squares = this.state.squares.slice();
     squares[i] = 'X';
-    this.setState({ squares: squares });
+    this.setState({ squares });
   }
 
   renderSquare(i) {
