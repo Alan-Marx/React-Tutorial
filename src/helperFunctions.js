@@ -7,20 +7,29 @@ const generateWinningPaths = (n) => {
   let counter = 0;
 
   for (let i = 0; i < n; i++) {
-    const row = [];
-    const column = [];
+
+    const row      = [],
+          column   = [],
+          diagonal = [];
+    
     
     for (let i2 = 0; i2 < n; i2++) {
-      row.push(counter);
       column.push(i2 === 0 ? i : i2 * n + i);
+      row.push(counter);
+
+      if (i === 0) {
+        diagonal.push(i2 === 0 ? 0 : i2 * n + i2)
+      } else if (i === n - 1) {
+        diagonal.push(i2 === 0 ? n - 1 : (n - 1) * (i2 + 1))
+      }
       counter++;
     }
     board.push(row, column);
+    if (diagonal.length > 1) {
+      board.push(diagonal);
+    }
   }
-
-  const winningPaths = [...board];
-  
-  return winningPaths;
+  return board;
 }
 
-console.log(generateWinningPaths(4));
+console.log(generateWinningPaths(3));
