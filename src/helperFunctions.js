@@ -15,7 +15,6 @@ const generateWinningPaths = (n) => {
       row.push(counter);
       column.push(i2 === 0 ? i : i2 * n + i);
       
-
       if (i === 0) {
         diagonal.push(i2 === 0 ? 0 : i2 * n + i2)
       } else if (i === n - 1) {
