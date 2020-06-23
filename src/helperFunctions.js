@@ -1,5 +1,5 @@
 
-/* The folliwing functions will generate an array of arrays representing each horizontal, vertical and diagonal combination of 
+/* The folliwing function will generate an array of arrays representing each horizontal, vertical and diagonal combination of 
 squares of n length in a n x n board. */
 
 const generateWinningPaths = (n) => {
@@ -7,15 +7,14 @@ const generateWinningPaths = (n) => {
   let counter = 0;
 
   for (let i = 0; i < n; i++) {
-
     const row      = [],
           column   = [],
           diagonal = [];
-    
-    
+  
     for (let i2 = 0; i2 < n; i2++) {
-      column.push(i2 === 0 ? i : i2 * n + i);
       row.push(counter);
+      column.push(i2 === 0 ? i : i2 * n + i);
+      
 
       if (i === 0) {
         diagonal.push(i2 === 0 ? 0 : i2 * n + i2)
@@ -31,5 +30,7 @@ const generateWinningPaths = (n) => {
   }
   return board;
 }
+
+export default generateWinningPaths;
 
 console.log(generateWinningPaths(3));
