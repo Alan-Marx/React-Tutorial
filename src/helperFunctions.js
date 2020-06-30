@@ -30,6 +30,19 @@ const generateWinningPaths = (n) => {
   return board;
 }
 
-export default generateWinningPaths;
+const calculateWinner = (squares) => {
+  const lines = generateWinningPaths(3);
+  
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && 
+        squares[a] === squares[b] && 
+        squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
 
-console.log(generateWinningPaths(3));
+export { generateWinningPaths, calculateWinner };
+

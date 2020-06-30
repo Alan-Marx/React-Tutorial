@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import generateWinningPaths from "./helperFunctions";
+import { generateWinningPaths, calculateWinner } from "./helperFunctions";
 
 // Function components present a simpler syntax over class components
 // that only have a render() method
@@ -90,20 +90,6 @@ class Game extends React.Component {
       </div>
     )
   }
-}
-
-const calculateWinner = (squares) => {
-  const lines = generateWinningPaths(3);
-  
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && 
-        squares[a] === squares[b] && 
-        squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
 }
 
 ReactDOM.render(
