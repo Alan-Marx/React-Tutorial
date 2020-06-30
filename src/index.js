@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import { generateWinningPaths, calculateWinner } from "./helperFunctions";
+import { calculateWinner } from "./helperFunctions";
 
 // Function components present a simpler syntax over class components
 // that only have a render() method
@@ -35,15 +35,6 @@ class Board extends React.Component {
     });
   }
   
-  renderSquare(i) {
-    return (
-      <Square 
-        value={this.state.squares[i]}
-        onClick={() => this.handleClick(i)}
-      />
-    );
-  }
-
   render() {
     const winner = calculateWinner(this.state.squares);
     let status;
@@ -52,25 +43,28 @@ class Board extends React.Component {
     } else {
       status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
     }
-     
+
+    const squareElements = Array.from(Array(9).keys()).map(n => {
+      return (
+        <Square 
+          value={this.state.squares[n]}
+          onClick={() => this.handleClick(n)}
+        />
+      )
+    })
+
     return (
       <div>
         <div className="status">{status}</div>
         <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
+          {squareElements.slice(0, 3)}
         </div>
         <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
+          {squareElements.slice(3, 6)}
         </div>
         <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+          {squareElements.slice(6)}
+        </div> 
       </div>
     );
   }
